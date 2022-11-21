@@ -1,0 +1,20 @@
+1) create database dml_commands;
+
+2) use dml_commands;
+
+3) create table student_info(id INT AUTO_INCREMENT PRIMARY KEY,rollno INT NOT NULL,name VARCHAR(255),email VARCHAR(255));
+
+4) INSERT INTO student_info VALUES (1,'81','mihir','mihir@gmail.com');
+ 
+5) SELECT * FROM student_info;
+
+6) UPDATE student_info
+   SET name = 'MAX'
+   WHERE id = 1;
+
+7)  DELETE 
+    FROM student_info
+    WHERE name= 'megha';
+
+8) SELECT * FROM student_info 
+   WHERE id = 3;

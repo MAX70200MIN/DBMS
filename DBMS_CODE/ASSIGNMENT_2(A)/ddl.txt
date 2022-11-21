@@ -1,0 +1,26 @@
+
+CREATE DATABASE COTB_37_DDL;
+use COTB_37_DDL;
+CREATE TABLE student_info(ROLLNO INT PRIMARY KEY,NAME VARCHAR(255) NOT NULL,CLASS VARCHAR(20));
+alter table student_info add SUBJECT int(20);
+ALTER TABLE student_info
+modify
+SUBJECT varchar(40);
+select*from student_info;
+ALTER TABLE student_info add fees int;
+select*from student_info;
+ALTER TABLE student_info drop fees;
+select*from student_info;
+desc student_info;   
+insert into student_info values("1","ROHIT","T.Y","DBMS");
+insert into student_info values("2","amit","F.Y","SPM");
+insert into student_info values("3","sam","F.Y","SPOS");
+insert into student_info values("4","ram","S.Y","M3");
+insert into student_info values("5","mam","B.E","SPOS");
+select*from student_info;
+truncate table student_info;
+select*from student_info;
+alter table student_info
+RENAME to STD;
+select*from STD;
+DROP table STD;

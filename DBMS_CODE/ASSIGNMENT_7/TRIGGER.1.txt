@@ -1,0 +1,40 @@
+1) create table borrower2(roll_no int,name varchar(20),date_of_issue date,book
+
+2) insert into borrower2 values('1','nick','2020-06-10','wings_of_fire','avaliable','APJ');
+3) insert into borrower2 values('2','mira','2020-05-11','leaves_life','not_avaliable','borwarkar');
+4) insert into borrower2 values('3','rina','2020-02-12','unusal','avaliable','johar');
+5) insert into borrower2 values('4','harsha','2020-06-20','skylimit','avaliable','ingale');
+6) insert into borrower2 values('5','tej','2020-04-20','highway','not_avaliable','klm');
+
+7) select *from borrower2;
+
+8) delimiter //
+9) create trigger library after insert on borrower1 for 
+each row
+ -> begin
+ -> insert into audit1 
+values(new.roll_no,new.name,new.date_of_issue,new.book_name,ne
+w.status,new.author,current_timestamp);
+ -> end;
+ -> //
+
+10) insert into borrower1 values('6','xyz','2020-09-06','aaa','avaliable','xxx');//
+11)  select * from borrower2;//
+
+12) select * from audit1;//
+
+13) // UPDATE TRIGGER
+mysql> delimiter //
+create trigger library1 after update on borrower1 for 
+each row
+ -> begin
+ -> insert into audit1 
+values(new.roll_no,new.name,new.date_of_issue,new.book_name,ne
+w.status,new.author,current_timestamp);
+ -> end;
+ -> //
+
+14)update borrower2
+   set roll_no='8',book_name='leaf'
+   where name='xyz';//
+15)  select *from borrower1;//

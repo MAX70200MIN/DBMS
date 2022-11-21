@@ -1,0 +1,41 @@
+create database library;
+use library;
+create table borrower(Roll_no int(10) primary key, Name varchar(20) not null, Date_of_issue date not null, Name_of_book varchar(20) not null, Status varchar(1) not null);
+desc borrower;
+create table fine(Roll_no int(10), Date date not null, Amount int(10), foreign key(Roll_no) references borrower(Roll_no));
+desc fine;
+insert into borrower values(1, 'Amruta', '2022/07/18', 'MySQL', 'I');
+insert into borrower values(2, 'Siddeshdesh', '2022/06/02', 'Computer Network', 'I');
+insert into borrower values(3, 'Swarali', '2022/06/22', 'Operating System', 'I');
+insert into borrower values(4, 'Bhavesh', '2022/07/17', 'Design of Complier', 'I');
+insert into borrower values(5, 'Chaitali', '2022/08/15', 'Internet of Things', 'I');
+insert into borrower values(6, 'Omkar', '2022/09/02', 'Mobile Computing', 'I');
+select * from borrower;
+delimiter //
+create procedure A(IN rollno1 int(10), name1 varchar(20))
+begin
+declare i_date date;
+declare diff int;
+declare fine_amt int;
+declare EXIT HANDLER FOR SQLEXCEPTION SELECT 'Table not found';
+select Date_of_issue into i_date from borrower where Roll_no= rollno1 and Name_of_book = name1;
+select DATEDIFF(CURDATE(), i_date) into diff;
+if(diff>=15 and diff<=30) then
+set fine_amt= diff*5;
+insert into fine values(rollno1, CURDATE(), fine_amt);
+elseif(diff>30) then
+set fine_amt= diff*50;
+insert into fine values(rollno1, CURDATE(), fine_amt);
+end if;
+update borrower set Status= 'R' where Roll_no= rollno1 and Name_of_book = name1;
+end
+//
+delimiter ;
+call A(1, 'MySQL');
+select * from fine;
+select * from borrower;
+call A(2, 'Computer Network');
+call A(5, 'Internet of Things');
+select * from fine;
+call A(6, 'Mobile Computing');
+select * from fine;

@@ -1,0 +1,21 @@
+1)
+
+use COTB37_Mapreduce
+
+db.createcollection("Student_info")
+
+db.Student_info.insert({name:"Ram",marks:40,age:"20"})
+db.Student_info.insert({name:"san",marks:50,age:"20"})
+db.Student_info.insert({name:"dam",marks:30,age:"18"})
+db.Student_info.insert({name:"fam",marks:20,age:"21"})
+db.Student_info.insert({name:"kam",marks:10,age:"21"})
+db.Student_info.find()
+
+var mapfunction=function(){emit(this.age,this.marks)}
+var reducefunction=function(key,values){return Array.sum(values)}
+db.Student_info.mapReduce(mapfunction,reducefunction,{out:'Result1_mapreduce'})
+
+db.Result1_mapreduce.find()
+
+
+

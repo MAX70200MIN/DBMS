@@ -1,0 +1,37 @@
+1) create database project_dbms;
+
+2) use project_dbms;
+
+3) CREATE TABLE customer(id INT PRIMARY KEY,name VARCHAR(25) NOT NULL,salary float NOT NULL);
+
+4) INSERT INTO customer VALUES (1,'Mohit',500000),(2,'Ajay',250000),(3,'Rutuja',350000), (4,'Hemanshu',353240);
+
+5) SELECT * FROM customer;
+
+6)  CREATE TABLE orders(order_id INT PRIMARY KEY, customer_id INT REFERENCES customers,amount INT NOT NULL );
+
+7) INSERT INTO orders VALUES (1,2,200),(2,2,1200),(3,3,2300), (4,4,2100),(5,1,100);
+
+8) SELECT * FROM orders;
+
+9) -- INNER JOIN
+mysql> SELECT name,salary,amount FROM customer INNER JOIN orders ON customer.id = orders.customer_id;
+
+10)-- LEFT JOIN
+mysql> SELECT name,salary,amount FROM customer LEFT JOIN orders ON customer.id = orders.customer_id;
+
+11)-- FULL JOIN
+mysql> SELECT name,salary,amount FROM customer FULL JOIN orders ON id = orders.customer_id;
+
+12)-- CARTESIAN OR CROSS JOIN
+mysql> SELECT id,name,amount FROM customer,orders;
+
+13)-- SUB QUERY OPERATION
+
+-- SELECT
+mysql> SELECT name FROM customer WHERE id IN (SELECT customer_id FROM orders);
+
+-- UPDATE
+mysql> UPDATE customer SET salary=salary+1000 WHERE id IN (SELECT customer_id FROM orders);
+
+14) SELECT * FROM customer;

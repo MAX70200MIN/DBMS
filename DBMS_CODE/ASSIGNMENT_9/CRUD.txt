@@ -1,0 +1,18 @@
+1) db.createCollection('Student')
+
+2)  db.Student.insert({Rno:'1',Name:'Piyush',Class:'TE COMP'})
+
+3) db.Student.find()
+   db.Student.find().pretty()
+
+   db.Student.find({$and:[{"Name":"Piyush"}
+   db.Student.find({$or:[{"Name":"Piyush"}}).pretty()
+   db.Student.find( {"Rno": { $not:{$lt:"3"}}}).pretty()
+   db.Student.find( {"Rno": { $eq:"5"}}).pretty()
+   db.Student.find( {"Rno": { $gte:"5"}}).pretty()
+
+4) db.Student.update({'Name':'Hitesh'},{$set:{'Name':'Henry'}});
+
+5) db.Student.remove({'ADD':'MP'})
+
+6) db.Student.drop() true
